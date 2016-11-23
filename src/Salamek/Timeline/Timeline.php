@@ -7,7 +7,7 @@ namespace Salamek\Timeline;
  * Class TemplatedEmail
  * @package Salamek\TemplatedEmail
  */
-class Timeline extends Nette\Object
+class Timeline extends \Nette\Object
 {
     private $tempPath;
 
