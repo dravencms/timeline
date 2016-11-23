@@ -3,7 +3,6 @@
 namespace App\FrontModule\Components\Timeline\Timeline;
 
 use App\Components\BaseControl;
-use App\Model\Article\Repository\ArticleRepository;
 use App\Model\Timeline\Repository\TimelineRepository;
 use Salamek\Cms\ICmsActionOption;
 
@@ -25,7 +24,8 @@ class Detail extends BaseControl
     public function render()
     {
         $template = $this->template;
-        $template->test = $this->timelineRepository->getTest();
+
+        $template->test = 'TTTT';
         $template->setFile(__DIR__ . '/detail.latte');
         $template->render();
     }

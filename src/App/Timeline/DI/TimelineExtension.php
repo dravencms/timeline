@@ -2,6 +2,7 @@
 
 namespace App\Timeline\DI;
 
+use Kdyby\Console\DI\ConsoleExtension;
 use Nette;
 use Nette\DI\Compiler;
 use Nette\DI\Configurator;
@@ -62,7 +63,7 @@ class TimelineExtension extends Nette\DI\CompilerExtension
             if (is_string($command)) {
                 $cli->setImplement($command);
             } else {
-                throw new \Exception;
+                throw new \InvalidArgumentException;
             }
         }
     }
@@ -74,9 +75,9 @@ class TimelineExtension extends Nette\DI\CompilerExtension
             $cli = $builder->addDefinition($this->prefix('components.' . $i))
                 ->setInject(FALSE); // lazy injects
             if (is_string($command)) {
-                $cli->setClass($command);
+                $cli->setImplement($command);
             } else {
-                throw new \Exception;
+                throw new \InvalidArgumentException;
             }
         }
     }
@@ -85,12 +86,30 @@ class TimelineExtension extends Nette\DI\CompilerExtension
     {
         $builder = $this->getContainerBuilder();
         foreach ($this->loadFromFile(__DIR__ . '/models.neon') as $i => $command) {
-            $cli = $builder->addDefinition($this->prefix('cli.' . $i))
+            $cli = $builder->addDefinition($this->prefix('models.' . $i))
                 ->setInject(FALSE); // lazy injects
             if (is_string($command)) {
                 $cli->setClass($command);
             } else {
-                throw new \Exception;
+                throw new \InvalidArgumentException;
+            }
+        }
+    }
+
+    protected function loadConsole()
+    {
+        $builder = $this->getContainerBuilder();
+
+        foreach ($this->loadFromFile(__DIR__ . '/console.neon') as $i => $command) {
+            $cli = $builder->addDefinition($this->prefix('cli.' . $i))
+                ->addTag(ConsoleExtension::TAG_COMMAND)
+                ->setInject(FALSE); // lazy injects
+
+            if (is_string($command)) {
+                $cli->setClass($command);
+
+            } else {
+                throw new \InvalidArgumentException;
             }
         }
     }
