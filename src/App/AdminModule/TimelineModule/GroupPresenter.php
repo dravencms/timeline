@@ -37,7 +37,7 @@ class GroupPresenter extends SecuredPresenter
      */
     public function renderDefault()
     {
-        $this->template->h1 = 'Article groups';
+        $this->template->h1 = 'Timeline groups';
     }
 
     /**

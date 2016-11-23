@@ -135,7 +135,7 @@ class GroupForm extends Control
             $group->setName($values->name);
             $group->setIsShowName($values->isShowName);
         } else {
-            $group = new Group($values->name, $values->isShowName, $values->sortBy);
+            $group = new Group($values->name, $values->isShowName);
         }
 
         $this->entityManager->persist($group);

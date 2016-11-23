@@ -7,9 +7,13 @@
 
 namespace App\AdminModule\TimelineModule;
 
+use App\AdminModule\Components\Timeline\TimelineForm\TimelineFormFactory;
+use App\AdminModule\Components\Timeline\TimeLineGrid\TimelineGridFactory;
 use App\AdminModule\SecuredPresenter;
 use App\Model\Timeline\Repository\GroupRepository;
 use App\Model\Timeline\Repository\TimelineRepository;
+use Dravencms\Model\Timeline\Entities\Group;
+use Dravencms\Model\Timeline\Entities\Timeline;
 
 /**
  * Description of ArticlePresenter
@@ -25,24 +29,21 @@ class TimelinePresenter extends SecuredPresenter
     /** @var GroupRepository @inject */
     public $groupRepository;
 
-    /** @var TagRepository @inject */
-    public $tagRepository;
+    /** @var TimelineGridFactory @inject */
+    public $timelineGridFactory;
 
-    /** @var ArticleGridFactory @inject */
-    public $articleGridFactory;
-
-    /** @var ArticleFormFactory @inject */
-    public $articleFormFactory;
+    /** @var TimelineFormFactory @inject */
+    public $timelineFormFactory;
 
     /** @var Group */
     private $group;
 
-    /** @var Article|null */
-    private $article = null;
+    /** @var Timeline|null */
+    private $timeline = null;
 
     /**
      * @param integer $groupId
-     * @isAllowed(article,edit)
+     * @isAllowed(timeline,edit)
      */
     public function actionDefault($groupId)
     {
@@ -52,7 +53,7 @@ class TimelinePresenter extends SecuredPresenter
     }
 
     /**
-     * @isAllowed(article,edit)
+     * @isAllowed(timeline,edit)
      * @param $groupId
      * @param $id
      * @throws \Nette\Application\BadRequestException
@@ -61,43 +62,43 @@ class TimelinePresenter extends SecuredPresenter
     {
         $this->group = $this->groupRepository->getOneById($groupId);
         if ($id) {
-            $article = $this->timelineRepository->getOneById($id);
+            $timeline = $this->timelineRepository->getOneById($id);
 
-            if (!$article) {
+            if (!$timeline) {
                 $this->error();
             }
 
-            $this->article = $article;
+            $this->timeline = $timeline;
 
-            $this->template->h1 = sprintf('Edit article „%s“', $article->getName());
+            $this->template->h1 = sprintf('Edit timeline „%s“', $timeline->getName());
         } else {
-            $this->template->h1 = 'New article in group '.$this->group->getName();
+            $this->template->h1 = 'New timeline in group '.$this->group->getName();
         }
     }
 
     /**
-     * @return \AdminModule\Components\Article\ArticleForm
+     * @return \App\AdminModule\Components\Timeline\TimelineForm\TimelineForm
      */
-    protected function createComponentFormArticle()
+    protected function createComponentFormTimeline()
     {
-        $control = $this->articleFormFactory->create($this->group, $this->article);
+        $control = $this->timelineFormFactory->create($this->group, $this->timeline);
         $control->onSuccess[] = function(){
-            $this->flashMessage('Article has been successfully saved', 'alert-success');
-            $this->redirect('Article:', ['groupId' => $this->group->getId()]);
+            $this->flashMessage('Timeline has been successfully saved', 'alert-success');
+            $this->redirect('Timeline:', ['groupId' => $this->group->getId()]);
         };
         return $control;
     }
 
     /**
-     * @return \AdminModule\Components\Article\ArticleGrid
+     * @return \App\AdminModule\Components\Timeline\TimeLineGrid\TimelineGrid
      */
-    public function createComponentGridArticle()
+    public function createComponentGridTimeline()
     {
-        $control = $this->articleGridFactory->create($this->group);
+        $control = $this->timelineGridFactory->create($this->group);
         $control->onDelete[] = function()
         {
-            $this->flashMessage('Article has been successfully deleted', 'alert-success');
-            $this->redirect('Article:', ['groupId' => $this->group->getId()]);
+            $this->flashMessage('Timeline has been successfully deleted', 'alert-success');
+            $this->redirect('Timeline:', ['groupId' => $this->group->getId()]);
         };
         return $control;
     }

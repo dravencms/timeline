@@ -35,11 +35,26 @@ class UninstallCommand extends Command
 
             $aclResource = $aclResourceRepository->getOneByName('timeline');
 
+            foreach($aclResource->getAclOperations() AS $aclOperation)
+            {
+                foreach ($aclOperation->getGroups() AS $group)
+                {
+                    $aclOperation->removeGroup($group);
+                }
+
+                foreach ($aclOperation->getAdminMenus() AS $adminMenu)
+                {
+                    $entityManager->remove($adminMenu);
+                }
+
+                $entityManager->remove($aclOperation);
+            }
+
             $entityManager->remove($aclResource);
             $entityManager->flush();
 
 
-            $output->writeLn('Module installed successfully');
+            $output->writeLn('Module uninstalled successfully');
             return 0; // zero return code means everything is ok
 
         } catch (\Exception $e) {

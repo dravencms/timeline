@@ -46,5 +46,58 @@ class Group extends Nette\Object
      * @ORM\OneToMany(targetEntity="Timeline", mappedBy="group",cascade={"persist"})
      */
     private $timelines;
+
+    /**
+     * Group constructor.
+     * @param $name
+     * @param bool $isShowName
+     */
+    public function __construct($name, $isShowName = false)
+    {
+        $this->name = $name;
+        $this->isShowName = $isShowName;
+
+        $this->timelines = new ArrayCollection();
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isIsShowName()
+    {
+        return $this->isShowName;
+    }
+
+    /**
+     * @return ArrayCollection|Timeline[]
+     */
+    public function getTimelines()
+    {
+        return $this->timelines;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @param boolean $isShowName
+     */
+    public function setIsShowName($isShowName)
+    {
+        $this->isShowName = $isShowName;
+    }
 }
 

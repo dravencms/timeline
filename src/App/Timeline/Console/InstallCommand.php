@@ -2,10 +2,10 @@
 
 namespace App\Timeline\Console;
 
+use App\Model\Admin\Entities\Menu;
+use App\Model\Admin\Repository\MenuRepository;
 use App\Model\User\Entities\AclOperation;
 use App\Model\User\Entities\AclResource;
-use App\Model\User\Repository\AclOperationRepository;
-use App\Model\User\Repository\AclResourceRepository;
 use Kdyby\Doctrine\EntityManager;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -25,11 +25,8 @@ class InstallCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        /** @var AclResourceRepository $aclResourceRepository */
-        $aclResourceRepository = $this->getHelper('container')->getByType('App\Model\User\Repository\AclResourceRepository');
-
-        /** @var AclOperationRepository $aclOperationRepository */
-        $aclOperationRepository = $this->getHelper('container')->getByType('App\Model\User\Repository\AclOperationRepository');
+        /** @var MenuRepository $adminMenuRepository */
+        $adminMenuRepository = $this->getHelper('container')->getByType('App\Model\Admin\Repository\MenuRepository');
 
         /** @var EntityManager $entityManager */
         $entityManager = $this->getHelper('container')->getByType('Kdyby\Doctrine\EntityManager');
@@ -44,6 +41,19 @@ class InstallCommand extends Command
             $entityManager->persist($aclOperation);
             $aclOperation = new AclOperation($aclResource, 'delete', 'Allows deletion of timeline');
             $entityManager->persist($aclOperation);
+
+            $adminMenu = new Menu('Timeline', ':Admin:Timeline:Group', 'fa-bars', $aclOperation);
+
+            $foundRoot = $adminMenuRepository->getOneByName('Site items');
+
+            if ($foundRoot)
+            {
+                $adminMenuRepository->getMenuRepository()->persistAsLastChildOf($adminMenu, $foundRoot);
+            }
+            else
+            {
+                $entityManager->persist($adminMenu);
+            }
 
             $entityManager->flush();
 
