@@ -4,8 +4,8 @@ namespace Dravencms\Timeline;
 
 
 /**
- * Class TemplatedEmail
- * @package Salamek\TemplatedEmail
+ * Class Timeline
+ * @package Dravencms\Timeline
  */
 class Timeline extends \Nette\Object
 {
