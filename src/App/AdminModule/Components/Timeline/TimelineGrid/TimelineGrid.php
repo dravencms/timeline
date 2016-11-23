@@ -19,7 +19,7 @@
  * MA 02110-1301  USA
  */
 
-namespace App\AdminModule\Components\Timeline\TimeLineGrid;
+namespace App\AdminModule\Components\Timeline\TimelineGrid;
 
 use App\Components\BaseGridFactory;
 use App\Model\Locale\Repository\LocaleRepository;
@@ -92,7 +92,6 @@ class TimelineGrid extends Control
             ->setSuggestion();
 
         $grid->addColumnBoolean('isActive', 'Active');
-        $grid->addColumnBoolean('isShowName', 'Show name');
 
         $grid->addColumnDate('createdAt', 'Created', $this->localeRepository->getLocalizedDateTimeFormat())
             ->setSortable()

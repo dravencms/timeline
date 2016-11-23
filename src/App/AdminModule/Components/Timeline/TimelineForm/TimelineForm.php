@@ -110,7 +110,6 @@ class TimelineForm extends Control
         } else {
             $defaults = [
                 'isActive' => true,
-                'isShowName' => true
             ];
         }
 
@@ -134,7 +133,6 @@ class TimelineForm extends Control
         $form->addText('structureFile');
 
         $form->addCheckbox('isActive');
-        $form->addCheckbox('isShowName');
 
         $form->addSubmit('send');
 
@@ -178,15 +176,15 @@ class TimelineForm extends Control
 
             $defaultLocale = $this->localeRepository->getDefault();
 
-            $timeline = new Timeline($this->group, $values->{$defaultLocale->getLanguageCode()}->name, $values->{$defaultLocale->getLanguageCode()}->text,  $values->isActive, $values->isShowName,
+            $timeline = new Timeline($this->group, $values->{$defaultLocale->getLanguageCode()}->name, $values->{$defaultLocale->getLanguageCode()}->text,  $values->isActive,
                 $structureFile);
         }
 
         $repository = $this->entityManager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
         foreach ($this->localeRepository->getActive() AS $activeLocale) {
-            $repository->translate($timeline, 'name', $activeLocale->getLanguageCode(), $this->cleanName($values->{$activeLocale->getLanguageCode()}->name))
-                ->translate($timeline, 'text', $activeLocale->getLanguageCode(), $this->cleanText($values->{$activeLocale->getLanguageCode()}->text));
+            $repository->translate($timeline, 'name', $activeLocale->getLanguageCode(), $values->{$activeLocale->getLanguageCode()}->name)
+                ->translate($timeline, 'text', $activeLocale->getLanguageCode(), $values->{$activeLocale->getLanguageCode()}->text);
         }
 
         $this->entityManager->persist($timeline);

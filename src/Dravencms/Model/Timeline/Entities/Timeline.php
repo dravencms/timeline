@@ -65,11 +65,60 @@ class Timeline extends Nette\Object
     private $group;
 
     /**
+     * Timeline constructor.
+     * @param Group $group
+     * @param $name
+     * @param $text
+     * @param bool $isActive
+     * @param StructureFile|null $structureFile
+     */
+    public function __construct(Group $group, $name, $text, $isActive = true, StructureFile $structureFile = null)
+    {
+        $this->group = $group;
+        $this->name = $name;
+        $this->text = $text;
+        $this->isActive = $isActive;
+        $this->structureFile = $structureFile;
+    }
+
+    /**
      * @return string
      */
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getText()
+    {
+        return $this->text;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isIsActive()
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * @return StructureFile
+     */
+    public function getStructureFile()
+    {
+        return $this->structureFile;
+    }
+
+    /**
+     * @return Group
+     */
+    public function getGroup()
+    {
+        return $this->group;
     }
 }
 

@@ -8,7 +8,7 @@
 namespace App\AdminModule\TimelineModule;
 
 use App\AdminModule\Components\Timeline\TimelineForm\TimelineFormFactory;
-use App\AdminModule\Components\Timeline\TimeLineGrid\TimelineGridFactory;
+use App\AdminModule\Components\Timeline\TimelineGrid\TimelineGridFactory;
 use App\AdminModule\SecuredPresenter;
 use App\Model\Timeline\Repository\GroupRepository;
 use App\Model\Timeline\Repository\TimelineRepository;
@@ -90,7 +90,7 @@ class TimelinePresenter extends SecuredPresenter
     }
 
     /**
-     * @return \App\AdminModule\Components\Timeline\TimeLineGrid\TimelineGrid
+     * @return \App\AdminModule\Components\Timeline\TimelineGrid\TimelineGrid
      */
     public function createComponentGridTimeline()
     {

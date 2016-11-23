@@ -15,9 +15,5 @@ Then you have to register extension in `config.neon`.
 
 ```yaml
 extensions:
-	cms: Salamek\Cms\DI\CmsExtension
-
-cms:
-    tempPath: %tmpDir%/cms
-    presenterNamespace: FrontModule
+	timeline: App\Timeline\DI\TimelineExtension
 ```
