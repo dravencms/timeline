@@ -21,7 +21,6 @@
   },
   "autoload": {
     "psr-0": {
-      "Salamek\\": "src/",
       "App\\": "src/"
     }
   }
