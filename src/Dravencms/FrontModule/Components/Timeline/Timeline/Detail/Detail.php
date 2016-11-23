@@ -1,6 +1,6 @@
 <?php
 
-namespace Dravencms\FrontModule\Components\Timeline\Timeline;
+namespace Dravencms\FrontModule\Components\Timeline\Timeline\Detail;
 
 use Dravencms\Components\BaseControl;
 use Dravencms\Model\Timeline\Repository\TimelineRepository;
