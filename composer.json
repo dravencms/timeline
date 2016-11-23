@@ -1,0 +1,27 @@
+{
+  "name": "salamek/dravencms-timeline",
+  "type": "library",
+  "description": "Timeline module for dravencms",
+  "keywords": [
+    "dravencms",
+    "timeline"
+  ],
+  "license": [
+    "LGPL-3.0"
+  ],
+  "authors": [
+    {
+      "name": "Adam Schubert"
+    }
+  ],
+  "require": {
+  },
+  "require-dev": {
+    "nette/tester": "@dev"
+  },
+  "autoload": {
+    "psr-0": {
+      "Salamek\\": "src/"
+    }
+  }
+}
