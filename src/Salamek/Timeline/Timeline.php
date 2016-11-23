@@ -1,13 +1,13 @@
 <?php
 
-namespace Salamek\Cms;
+namespace Salamek\Timeline;
 
 
 /**
  * Class TemplatedEmail
  * @package Salamek\TemplatedEmail
  */
-class Cms extends Nette\Object
+class Timeline extends Nette\Object
 {
     private $tempPath;
 

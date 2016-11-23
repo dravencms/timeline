@@ -1,6 +1,6 @@
 <?php
 
-namespace Salamek\Gitlab\DI;
+namespace Salamek\Timeline\DI;
 
 use Nette;
 use Nette\DI\Compiler;
@@ -10,7 +10,7 @@ use Nette\DI\Configurator;
  * Class CmsExtension
  * @package Salamek\Cms\DI
  */
-class CmsExtension extends Nette\DI\CompilerExtension
+class TimelineExtension extends Nette\DI\CompilerExtension
 {
 
     public function loadConfiguration()
@@ -33,7 +33,7 @@ class CmsExtension extends Nette\DI\CompilerExtension
     public static function register(Configurator $config, $extensionName = 'templatedEmailExtension')
     {
         $config->onCompile[] = function (Configurator $config, Compiler $compiler) use ($extensionName) {
-            $compiler->addExtension($extensionName, new CmsExtension());
+            $compiler->addExtension($extensionName, new TimelineExtension());
         };
     }
 
