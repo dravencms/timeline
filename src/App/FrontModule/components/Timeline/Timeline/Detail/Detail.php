@@ -1,6 +1,6 @@
 <?php
 
-namespace App\FrontModule\Components\Timeline\Timeline;
+namespace App\FrontModule\Components\Timeline\Timeline\Detail;
 
 use App\Components\BaseControl;
 use App\Model\Article\Repository\ArticleRepository;

@@ -17,7 +17,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301  USA
  */
-namespace App\FrontModule\Components\Timeline\Timeline;
+namespace App\FrontModule\Components\Timeline\Timeline\Detail;
 
 use Salamek\Cms\ICmsActionOption;
 
