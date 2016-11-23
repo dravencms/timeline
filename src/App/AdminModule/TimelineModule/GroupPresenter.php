@@ -7,11 +7,11 @@
 
 namespace App\AdminModule\TimelineModule;
 
-use AdminModule\Components\Article\GroupFormFactory;
-use AdminModule\Components\Article\GroupGridFactory;
+use App\AdminModule\Components\Timeline\GroupForm\GroupFormFactory;
+use App\AdminModule\Components\Timeline\GroupGrid\GroupGridFactory;
 use App\AdminModule\SecuredPresenter;
-use App\Model\Article\Entities\Article;
 use App\Model\Article\Repository\GroupRepository;
+use Dravencms\Model\Timeline\Entities\Group;
 
 /**
  * Description of GroupPresenter
@@ -29,11 +29,11 @@ class GroupPresenter extends SecuredPresenter
     /** @var GroupFormFactory @inject */
     public $groupFormFactory;
 
-    /** @var Article|null */
+    /** @var Group|null */
     private $group = null;
 
     /**
-     * @isAllowed(article,edit)
+     * @isAllowed(timeline,edit)
      */
     public function renderDefault()
     {
@@ -41,7 +41,7 @@ class GroupPresenter extends SecuredPresenter
     }
 
     /**
-     * @isAllowed(article,edit)
+     * @isAllowed(timeline,edit)
      * @param $id
      * @throws \Nette\Application\BadRequestException
      */
@@ -56,34 +56,34 @@ class GroupPresenter extends SecuredPresenter
 
             $this->group = $group;
 
-            $this->template->h1 = sprintf('Edit article group „%s“', $group->getName());
+            $this->template->h1 = sprintf('Edit timeline group „%s“', $group->getName());
         } else {
-            $this->template->h1 = 'New article group';
+            $this->template->h1 = 'New timeline group';
         }
     }
 
     /**
-     * @return \AdminModule\Components\Article\GroupForm
+     * @return \AdminModule\Components\Timeline\GroupForm
      */
     protected function createComponentFormGroup()
     {
         $control = $this->groupFormFactory->create($this->group);
         $control->onSuccess[] = function(){
-            $this->flashMessage('Article group has been successfully saved', 'alert-success');
+            $this->flashMessage('Timeline group has been successfully saved', 'alert-success');
             $this->redirect('Group:');
         };
         return $control;
     }
 
     /**
-     * @return \AdminModule\Components\Article\GroupGrid
+     * @return \AdminModule\Components\Timeline\GroupGrid
      */
     public function createComponentGridGroup()
     {
         $control = $this->groupGridFactory->create();
         $control->onDelete[] = function()
         {
-            $this->flashMessage('Article group has been successfully deleted', 'alert-success');
+            $this->flashMessage('Timeline group has been successfully deleted', 'alert-success');
             $this->redirect('Group:');
         };
         return $control;

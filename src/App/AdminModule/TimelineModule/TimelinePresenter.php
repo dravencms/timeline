@@ -7,25 +7,20 @@
 
 namespace App\AdminModule\TimelineModule;
 
-use AdminModule\Components\Article\ArticleFormFactory;
-use AdminModule\Components\Article\ArticleGridFactory;
 use App\AdminModule\SecuredPresenter;
-use App\Model\Article\Entities\Article;
-use App\Model\Article\Entities\Group;
-use App\Model\Article\Repository\ArticleRepository;
-use App\Model\Article\Repository\GroupRepository;
-use App\Model\Tag\Repository\TagRepository;
+use App\Model\Timeline\Repository\GroupRepository;
+use App\Model\Timeline\Repository\TimelineRepository;
 
 /**
  * Description of ArticlePresenter
  *
  * @author Adam Schubert
  */
-class ArticlePresenter extends SecuredPresenter
+class TimelinePresenter extends SecuredPresenter
 {
 
-    /** @var ArticleRepository @inject */
-    public $articleRepository;
+    /** @var TimelineRepository @inject */
+    public $timelineRepository;
 
     /** @var GroupRepository @inject */
     public $groupRepository;
@@ -53,7 +48,7 @@ class ArticlePresenter extends SecuredPresenter
     {
         $this->group = $this->groupRepository->getOneById($groupId);
         $this->template->group = $this->group;
-        $this->template->h1 = 'Articles in group '.$this->group->getName();
+        $this->template->h1 = 'Timelines in group '.$this->group->getName();
     }
 
     /**
@@ -66,7 +61,7 @@ class ArticlePresenter extends SecuredPresenter
     {
         $this->group = $this->groupRepository->getOneById($groupId);
         if ($id) {
-            $article = $this->articleRepository->getOneById($id);
+            $article = $this->timelineRepository->getOneById($id);
 
             if (!$article) {
                 $this->error();

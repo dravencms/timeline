@@ -2,13 +2,11 @@
 namespace Dravencms\Model\Timeline\Entities;
 
 use App\Model\File\Entities\StructureFile;
-use App\Model\Tag\Entities\Tag;
-use Doctrine\Common\Collections\ArrayCollection;
+
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Translatable\Translatable;
 use Doctrine\ORM\Mapping\UniqueConstraint;
-use Gedmo\Sortable\Sortable;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Kdyby\Doctrine\Entities\Attributes\Identifier;
 use Nette;
@@ -61,10 +59,17 @@ class Timeline extends Nette\Object
 
     /**
      * @var Group
-     * @Gedmo\SortableGroup
      * @ORM\ManyToOne(targetEntity="Group", inversedBy="articles")
      * @ORM\JoinColumn(name="group_id", referencedColumnName="id")
      */
     private $group;
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
 }
 
