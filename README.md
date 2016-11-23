@@ -15,5 +15,5 @@ Then you have to register extension in `config.neon`.
 
 ```yaml
 extensions:
-	timeline: App\Timeline\DI\TimelineExtension
+	timeline: Dravencms\Timeline\DI\TimelineExtension
 ```

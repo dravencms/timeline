@@ -22,7 +22,7 @@ class TimelineExtension extends Nette\DI\CompilerExtension
 
 
         $builder->addDefinition($this->prefix('timeline'))
-            ->setClass('App\Timeline\Timeline', []);
+            ->setClass('Dravencms\Timeline\Timeline', []);
 
         $this->loadCmsComponents();
         $this->loadComponents();
