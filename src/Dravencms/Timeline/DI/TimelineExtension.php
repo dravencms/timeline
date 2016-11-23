@@ -9,8 +9,8 @@ use Nette\DI\Configurator;
 use Salamek\Cms\DI\CmsExtension;
 
 /**
- * Class CmsExtension
- * @package Salamek\Cms\DI
+ * Class TimelineExtension
+ * @package Dravencms\Timeline\DI
  */
 class TimelineExtension extends Nette\DI\CompilerExtension
 {
