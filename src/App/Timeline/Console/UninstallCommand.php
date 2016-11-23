@@ -15,37 +15,29 @@ use Symfony\Component\Console\Output\OutputInterface;
  * Copyright (C) 2016 Adam Schubert <adam.schubert@sg1-game.net>.
  */
 
-class InstallCommand extends Command
+class UninstallCommand extends Command
 {
     protected function configure()
     {
-        $this->setName('dravencms:timeline:install')
-            ->setDescription('Installs dravencms module');
+        $this->setName('dravencms:timeline:uninstall')
+            ->setDescription('Uninstalls dravencms module');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        /** @var EntityManager $entityManager */
+        $entityManager = $this->getHelper('container')->getByType('Kdyby\Doctrine\EntityManager');
+        
         /** @var AclResourceRepository $aclResourceRepository */
         $aclResourceRepository = $this->getHelper('container')->getByType('App\Model\User\Repository\AclResourceRepository');
 
-        /** @var AclOperationRepository $aclOperationRepository */
-        $aclOperationRepository = $this->getHelper('container')->getByType('App\Model\User\Repository\AclOperationRepository');
-
-        /** @var EntityManager $entityManager */
-        $entityManager = $this->getHelper('container')->getByType('Kdyby\Doctrine\EntityManager');
-
         try {
 
-            $aclResource = new AclResource('timeline', 'Timeline');
+            $aclResource = $aclResourceRepository->getOneByName('timeline');
 
-            $entityManager->persist($aclResource);
-
-            $aclOperation = new AclOperation($aclResource, 'edit', 'Allows editation of timeline');
-            $entityManager->persist($aclOperation);
-            $aclOperation = new AclOperation($aclResource, 'delete', 'Allows deletion of timeline');
-            $entityManager->persist($aclOperation);
-
+            $entityManager->remove($aclResource);
             $entityManager->flush();
+
 
             $output->writeLn('Module installed successfully');
             return 0; // zero return code means everything is ok

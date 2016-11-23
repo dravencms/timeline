@@ -27,6 +27,7 @@ class TimelineExtension extends Nette\DI\CompilerExtension
         $this->loadCmsComponents();
         $this->loadComponents();
         $this->loadModels();
+        $this->loadConsole();
     }
 
 

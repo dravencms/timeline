@@ -1,1 +1,2 @@
 - App\Timeline\Console\InstallCommand
+- App\Timeline\Console\UninstallCommand
