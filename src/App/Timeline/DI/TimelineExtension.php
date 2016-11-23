@@ -60,7 +60,7 @@ class TimelineExtension extends Nette\DI\CompilerExtension
                 ->addTag(CmsExtension::TAG_COMPONENT)
                 ->setInject(FALSE); // lazy injects
             if (is_string($command)) {
-                $cli->setClass($command);
+                $cli->setImplement($command);
             } else {
                 throw new \Exception;
             }
