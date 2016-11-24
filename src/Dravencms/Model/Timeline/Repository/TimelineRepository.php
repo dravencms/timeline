@@ -2,7 +2,7 @@
 
 namespace Dravencms\Model\Timeline\Repository;
 
-use App\Model\BaseRepository;
+use Dravencms\Locale\TLocalizedRepository;
 use Dravencms\Model\Timeline\Entities\Group;
 use Dravencms\Model\Timeline\Entities\Timeline;
 use Gedmo\Translatable\TranslatableListener;
@@ -15,8 +15,10 @@ use Salamek\Cms\Models\ILocale;
 /**
  * Copyright (C) 2016 Adam Schubert <adam.schubert@sg1-game.net>.
  */
-class TimelineRepository extends BaseRepository implements ICmsComponentRepository
+class TimelineRepository implements ICmsComponentRepository
 {
+    use TLocalizedRepository;
+
     /** @var \Kdyby\Doctrine\EntityRepository */
     private $timelineRepository;
 

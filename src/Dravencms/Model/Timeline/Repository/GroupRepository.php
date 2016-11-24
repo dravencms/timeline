@@ -2,7 +2,7 @@
 
 namespace Dravencms\Model\Timeline\Repository;
 
-use App\Model\BaseRepository;
+use Dravencms\Locale\TLocalizedRepository;
 use Dravencms\Model\Timeline\Entities\Group;
 use Kdyby\Doctrine\EntityManager;
 use Salamek\Cms\CmsActionOption;
@@ -13,8 +13,10 @@ use Salamek\Cms\Models\ILocale;
 /**
  * Copyright (C) 2016 Adam Schubert <adam.schubert@sg1-game.net>.
  */
-class GroupRepository extends BaseRepository implements ICmsComponentRepository
+class GroupRepository implements ICmsComponentRepository
 {
+    use TLocalizedRepository;
+
     /** @var \Kdyby\Doctrine\EntityRepository */
     private $groupRepository;
 
