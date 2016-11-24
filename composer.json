@@ -23,5 +23,9 @@
     "psr-0": {
       "Dravencms\\": "src/"
     }
+  },
+  "scripts": {
+    "post-package-install": "Dravencms\\Timeline\\Composer\\Hooks::postPackageInstall",
+    "pre-package-uninstall": "Dravencms\\Timeline\\Composer\\Hooks::prePackageUninstall"
   }
 }
