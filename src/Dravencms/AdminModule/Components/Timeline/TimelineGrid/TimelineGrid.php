@@ -21,19 +21,19 @@
 
 namespace Dravencms\AdminModule\Components\Timeline\TimelineGrid;
 
-use Dravencms\Components\BaseGridFactory;
+use Dravencms\Components\BaseControl\BaseControl;
+use Dravencms\Components\BaseGrid\BaseGridFactory;
 use Dravencms\Model\Locale\Repository\LocaleRepository;
 use Dravencms\Model\Timeline\Repository\TimelineRepository;
 use Dravencms\Model\Timeline\Entities\Group;
 use Kdyby\Doctrine\EntityManager;
-use Nette\Application\UI\Control;
 
 /**
  * Description of TimelineGrid
  *
  * @author Adam Schubert <adam.schubert@sg1-game.net>
  */
-class TimelineGrid extends Control
+class TimelineGrid extends BaseControl
 {
 
     /** @var BaseGridFactory */

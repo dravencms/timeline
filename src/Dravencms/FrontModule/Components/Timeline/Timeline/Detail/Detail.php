@@ -2,7 +2,7 @@
 
 namespace Dravencms\FrontModule\Components\Timeline\Timeline\Detail;
 
-use Dravencms\Components\BaseControl;
+use Dravencms\Components\BaseControl\BaseControl;
 use Dravencms\Model\Timeline\Repository\TimelineRepository;
 use Salamek\Cms\ICmsActionOption;
 

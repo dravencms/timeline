@@ -20,11 +20,11 @@
 
 namespace Dravencms\AdminModule\Components\Timeline\GroupForm;
 
-use Dravencms\Components\BaseFormFactory;
+use Dravencms\Components\BaseControl\BaseControl;
+use Dravencms\Components\BaseForm\BaseFormFactory;
 use Dravencms\Model\Timeline\Repository\GroupRepository;
 use Dravencms\Model\Timeline\Entities\Group;
 use Kdyby\Doctrine\EntityManager;
-use Nette\Application\UI\Control;
 use Nette\Application\UI\Form;
 
 /**
@@ -32,7 +32,7 @@ use Nette\Application\UI\Form;
  *
  * @author Adam Schubert <adam.schubert@sg1-game.net>
  */
-class GroupForm extends Control
+class GroupForm extends BaseControl
 {
     /** @var BaseFormFactory */
     private $baseFormFactory;
