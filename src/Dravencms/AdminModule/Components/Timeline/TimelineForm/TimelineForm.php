@@ -21,8 +21,8 @@
 namespace Dravencms\AdminModule\Components\Timeline\TimelineForm;
 
 use Dravencms\Components\BaseFormFactory;
-use App\Model\File\Repository\StructureFileRepository;
-use App\Model\Locale\Repository\LocaleRepository;
+use Dravencms\Model\File\Repository\StructureFileRepository;
+use Dravencms\Model\Locale\Repository\LocaleRepository;
 use Dravencms\Model\Timeline\Repository\TimelineRepository;
 use Dravencms\Model\Timeline\Entities\Group;
 use Dravencms\Model\Timeline\Entities\Timeline;

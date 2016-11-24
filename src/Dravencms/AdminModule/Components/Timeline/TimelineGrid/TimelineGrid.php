@@ -22,7 +22,7 @@
 namespace Dravencms\AdminModule\Components\Timeline\TimelineGrid;
 
 use Dravencms\Components\BaseGridFactory;
-use App\Model\Locale\Repository\LocaleRepository;
+use Dravencms\Model\Locale\Repository\LocaleRepository;
 use Dravencms\Model\Timeline\Repository\TimelineRepository;
 use Dravencms\Model\Timeline\Entities\Group;
 use Kdyby\Doctrine\EntityManager;
