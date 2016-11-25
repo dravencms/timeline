@@ -30,6 +30,10 @@
         "extensions": {
           "timeline": "Dravencms\\Timeline\\DI\\TimelineExtension"
         }
+      },
+      "scripts": {
+        "pre-install": "Dravencms\\Timeline\\Scripts::prePackageInstall",
+        "post-install": "Dravencms\\Timeline\\Scripts::postPackageInstall"
       }
     }
   }
