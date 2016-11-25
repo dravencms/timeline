@@ -32,8 +32,8 @@
         }
       },
       "scripts": {
-        "pre-install": "Dravencms\\Timeline\\Script\\PreInstall",
-        "post-install": "Dravencms\\Timeline\\Script\\PostInstall"
+        "post-install": "Dravencms\\Timeline\\Script\\PostInstall",
+        "pre-uninstall": "Dravencms\\Timeline\\Script\\PreUninstall"
       }
     }
   }
