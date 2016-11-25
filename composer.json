@@ -24,8 +24,17 @@
       "Dravencms\\": "src/"
     }
   },
-  "scripts": {
-    "post-package-install": "Dravencms\\Timeline\\Composer\\Hooks::postPackageInstall",
-    "pre-package-uninstall": "Dravencms\\Timeline\\Composer\\Hooks::prePackageUninstall"
+  "extra": {
+    "dravencms": {
+      "configuration": {
+        "extensions": {
+          "translation": "Kdyby\\Translation\\DI\\TranslationExtension"
+        }
+      },
+      "scripts": {
+        "pre-install": "Dravencms\\Timeline\\Scripts::prePackageInstall",
+        "post-install": "Dravencms\\Timeline\\Scripts::postPackageInstall"
+      }
+    }
   }
 }

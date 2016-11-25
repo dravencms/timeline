@@ -1,11 +1,11 @@
 <?php
 
-namespace Dravencms\Timeline\Composer;
+namespace Dravencms\Timeline;
 
 /**
  * Copyright (C) 2016 Adam Schubert <adam.schubert@sg1-game.net>.
  */
-class Hooks
+class Scripts
 {
     public static function postPackageInstall()
     {
