@@ -13,7 +13,7 @@ use Kdyby\Doctrine\EntityManager;
 /**
  * Copyright (C) 2016 Adam Schubert <adam.schubert@sg1-game.net>.
  */
-class PreUninstall implements IScript
+class PostInstall implements IScript
 {
     private $menuRepository;
     private $entityManager;

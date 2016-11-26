@@ -9,7 +9,7 @@ use Kdyby\Doctrine\EntityManager;
 /**
  * Copyright (C) 2016 Adam Schubert <adam.schubert@sg1-game.net>.
  */
-class PreInstall implements IScript
+class PreUninstall implements IScript
 {
     private $aclResourceRepository;
 

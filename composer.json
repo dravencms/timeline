@@ -1,6 +1,6 @@
 {
   "name": "dravencms/timeline",
-  "type": "library",
+  "type": "dravencms-package",
   "description": "Timeline module for dravencms",
   "keywords": [
     "dravencms",
