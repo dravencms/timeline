@@ -1,2 +1,4 @@
 - Dravencms\Model\Timeline\Repository\TimelineRepository
+- Dravencms\Model\Timeline\Repository\TimelineCmsRepository
 - Dravencms\Model\Timeline\Repository\GroupRepository
+- Dravencms\Model\Timeline\Repository\GroupCmsRepository

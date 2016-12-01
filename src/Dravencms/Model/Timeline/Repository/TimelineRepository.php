@@ -15,7 +15,7 @@ use Salamek\Cms\Models\ILocale;
 /**
  * Copyright (C) 2016 Adam Schubert <adam.schubert@sg1-game.net>.
  */
-class TimelineRepository implements ICmsComponentRepository
+class TimelineRepository
 {
     use TLocalizedRepository;
 
@@ -51,6 +51,14 @@ class TimelineRepository implements ICmsComponentRepository
     public function getById($id)
     {
         return $this->timelineRepository->findBy(['id' => $id]);
+    }
+
+    /**
+     * @return array|mixed
+     */
+    public function getActive()
+    {
+        return $this->timelineRepository->findBy(['isActive' => true]);
     }
 
     /**
@@ -127,54 +135,5 @@ class TimelineRepository implements ICmsComponentRepository
     {
         $parameters['isActive'] = $isActive;
         return $this->timelineRepository->findOneBy($parameters);
-    }
-
-    /**
-     * @param string $componentAction
-     * @return ICmsActionOption[]
-     */
-    public function getActionOptions($componentAction)
-    {
-        switch ($componentAction) {
-            case 'Detail':
-            case 'OverviewDetail':
-                $return = [];
-                /** @var Timeline $timeline */
-                foreach ($this->timelineRepository->findBy(['isActive' => true]) AS $timeline) {
-                    $return[] = new CmsActionOption($timeline->getName(), ['id' => $timeline->getId()]);
-                }
-                break;
-
-            case 'Overview':
-            case 'SimpleOverview':
-            case 'Navigation':
-                return null;
-                break;
-
-            default:
-                return false;
-                break;
-        }
-
-
-        return $return;
-    }
-
-    /**
-     * @param string $componentAction
-     * @param array $parameters
-     * @param ILocale $locale
-     * @return null|CmsActionOption
-     */
-    public function getActionOption($componentAction, array $parameters, ILocale $locale)
-    {
-        /** @var Timeline $found */
-        $found = $this->findTranslatedOneBy($this->timelineRepository, $locale, $parameters + ['isActive' => true]);
-
-        if ($found) {
-            return new CmsActionOption($found->getName(), $parameters);
-        }
-
-        return null;
     }
 }

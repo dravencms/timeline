@@ -13,7 +13,7 @@ use Salamek\Cms\Models\ILocale;
 /**
  * Copyright (C) 2016 Adam Schubert <adam.schubert@sg1-game.net>.
  */
-class GroupRepository implements ICmsComponentRepository
+class GroupRepository
 {
     use TLocalizedRepository;
 
@@ -52,6 +52,14 @@ class GroupRepository implements ICmsComponentRepository
     }
 
     /**
+     * @return Group[]
+     */
+    public function getAll()
+    {
+        return $this->groupRepository->findAll();
+    }
+
+    /**
      * @param $name
      * @param Group|null $groupIgnore
      * @return mixed
@@ -83,49 +91,5 @@ class GroupRepository implements ICmsComponentRepository
         $qb = $this->groupRepository->createQueryBuilder('g')
             ->select('g');
         return $qb;
-    }
-
-    /**
-     * @param string $componentAction
-     * @return ICmsActionOption[]
-     */
-    public function getActionOptions($componentAction)
-    {
-        switch ($componentAction)
-        {
-            case 'Detail':
-            case 'SimpleDetail':
-                $return = [];
-                /** @var Group $group */
-                foreach ($this->groupRepository->findAll() AS $group) {
-                    $return[] = new CmsActionOption($group->getName(), ['id' => $group->getId()]);
-                }
-                break;
-
-            default:
-                return false;
-                break;
-        }
-
-
-        return $return;
-    }
-
-    /**
-     * @param string $componentAction
-     * @param array $parameters
-     * @param ILocale $locale
-     * @return null|CmsActionOption
-     */
-    public function getActionOption($componentAction, array $parameters, ILocale $locale)
-    {
-        $found = $this->findTranslatedOneBy($this->groupRepository, $locale, $parameters);
-
-        if ($found)
-        {
-            return new CmsActionOption($found->getName(), $parameters);
-        }
-
-        return null;
     }
 }
