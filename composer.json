@@ -16,6 +16,7 @@
   ],
   "require": {
     "dravencms/structure": "@dev",
+    "dravencms/admin": "@dev",
     "dravencms/paginator": "@dev"
   },
   "require-dev": {
