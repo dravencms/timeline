@@ -15,9 +15,9 @@
     }
   ],
   "require": {
-    "dravencms/structure": "@dev",
-    "dravencms/admin": "@dev",
-    "dravencms/paginator": "@dev"
+    "dravencms/structure": "^v1.0",
+    "dravencms/admin": "^v1.0",
+    "dravencms/paginator": "^v1.0"
   },
   "require-dev": {
     "nette/tester": "@dev"
