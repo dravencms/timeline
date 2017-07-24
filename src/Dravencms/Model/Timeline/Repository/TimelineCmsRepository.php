@@ -59,13 +59,13 @@ class TimelineCmsRepository implements ICmsComponentRepository
     /**
      * @param string $componentAction
      * @param array $parameters
-     * @param ILocale $locale
      * @return null|CmsActionOption
      */
-    public function getActionOption($componentAction, array $parameters, ILocale $locale)
+    public function getActionOption($componentAction, array $parameters)
     {
         /** @var Timeline $found */
-        $found = $this->timelineRepository->findTranslatedOneBy($this->timelineRepository, $locale, $parameters + ['isActive' => true]);
+        //$found = $this->timelineRepository->findTranslatedOneBy($this->timelineRepository, $locale, $parameters + ['isActive' => true]);
+        $found = null; //!FIXME
 
         if ($found) {
             return new CmsActionOption($found->getName(), $parameters);
