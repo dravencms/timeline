@@ -4,7 +4,6 @@ namespace Dravencms\Model\Timeline\Entities;
 use Dravencms\Model\File\Entities\StructureFile;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Gedmo\Translatable\Translatable;
 use Doctrine\ORM\Mapping\UniqueConstraint;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Kdyby\Doctrine\Entities\Attributes\Identifier;
@@ -16,21 +15,20 @@ use Nette;
  * @ORM\Entity
  * @ORM\Table(name="timelineTimeline", uniqueConstraints={@UniqueConstraint(name="name_unique", columns={"name", "group_id"})})
  */
-class Timeline extends Nette\Object
+class Timeline
 {
+    use Nette\SmartObject;
     use Identifier;
     use TimestampableEntity;
 
     /**
      * @var string
-     * @Gedmo\Translatable
      * @ORM\Column(type="string",length=255,nullable=false)
      */
     private $name;
 
     /**
      * @var string
-     * @Gedmo\Translatable
      * @ORM\Column(type="text",nullable=false)
      */
     private $text;
@@ -40,14 +38,6 @@ class Timeline extends Nette\Object
      * @ORM\Column(type="boolean", nullable=false)
      */
     private $isActive;
-
-    /**
-     * @Gedmo\Locale
-     * Used locale to override Translation listener`s locale
-     * this is not a mapped field of entity metadata, just a simple property
-     * and it is not necessary because globally locale can be set in listener
-     */
-    private $locale;
 
     /**
      * @var StructureFile
