@@ -2,7 +2,6 @@
 
 namespace Dravencms\Model\Timeline\Repository;
 
-use Dravencms\Locale\TLocalizedRepository;
 use Dravencms\Model\Timeline\Entities\Group;
 use Kdyby\Doctrine\EntityManager;
 use Salamek\Cms\CmsActionOption;
@@ -15,8 +14,6 @@ use Salamek\Cms\Models\ILocale;
  */
 class GroupRepository
 {
-    use TLocalizedRepository;
-
     /** @var \Kdyby\Doctrine\EntityRepository */
     private $groupRepository;
 

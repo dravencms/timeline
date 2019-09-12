@@ -2,7 +2,6 @@
 
 namespace Dravencms\Model\Timeline\Repository;
 
-use Dravencms\Locale\TLocalizedRepository;
 use Dravencms\Model\Timeline\Entities\Group;
 use Dravencms\Model\Timeline\Entities\Timeline;
 use Gedmo\Translatable\TranslatableListener;
@@ -17,8 +16,6 @@ use Salamek\Cms\Models\ILocale;
  */
 class TimelineRepository
 {
-    use TLocalizedRepository;
-
     /** @var \Kdyby\Doctrine\EntityRepository */
     private $timelineRepository;
 
