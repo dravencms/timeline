@@ -32,11 +32,12 @@
       "configuration": {
         "extensions": {
           "timeline": "Dravencms\\Timeline\\DI\\TimelineExtension"
+        },
+        "doctrine":{
+          "metadata": {
+            "Dravencms\\Model\\Timeline": "%appDir%/../vendor/dravencms/timeline/src/Dravencms/Model/Timeline"
+          }
         }
-      },
-      "scripts": {
-        "post-install": "Dravencms\\Timeline\\Script\\PostInstall",
-        "pre-uninstall": "Dravencms\\Timeline\\Script\\PreUninstall"
       }
     }
   }
